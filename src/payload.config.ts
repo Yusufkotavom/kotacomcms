@@ -32,6 +32,13 @@ export default buildConfig({
     meta: {
       titleSuffix: 'kotacom.id CMS',
     },
+    components: {
+      afterNavLinks: [
+        {
+          path: './admin/SidebarGuide',
+        },
+      ],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
