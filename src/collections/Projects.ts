@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
+  labels: {
+    singular: 'Proyek',
+    plural: 'Proyek',
+  },
   admin: {
     useAsTitle: 'title',
   },
@@ -10,21 +14,21 @@ export const Projects: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-    },
-    {
-      name: 'slug',
-      type: 'text',
-      unique: true,
+      type: 'row',
+      fields: [
+        { name: 'title', type: 'text', label: 'Judul Proyek', admin: { width: '60%', placeholder: 'Contoh: Implementasi Jaringan Kantor' } },
+        { name: 'slug', type: 'text', unique: true, label: 'Slug URL', admin: { width: '40%', placeholder: 'implementasi-jaringan-kantor' } },
+      ],
     },
     {
       name: 'category',
       type: 'array',
+      label: 'Kategori',
       fields: [
         {
           name: 'value',
           type: 'text',
+          admin: { placeholder: 'Contoh: Infrastruktur' },
         },
       ],
     },
@@ -48,31 +52,29 @@ export const Projects: CollectionConfig = {
         },
       ],
     },
-    {
-      name: 'organiser',
-      type: 'text',
-    },
-    {
-      name: 'imageUrl',
-      type: 'text',
-    },
+    { name: 'organiser', type: 'text', label: 'Penyelenggara/Klien' },
+    { name: 'imageUrl', type: 'text', label: 'Gambar Utama (URL)' },
     {
       name: 'published',
       type: 'date',
+      label: 'Tanggal Publikasi',
     },
     {
       name: 'description',
       type: 'textarea',
+      label: 'Ringkasan',
     },
     {
       name: 'body',
       type: 'textarea', // can contain md or html
+      label: 'Konten',
     },
     {
       name: 'format',
       type: 'select',
       options: ['md', 'html'],
       defaultValue: 'md',
+      label: 'Format Konten',
     },
     // Additional fields that Astro expects for projects
     {
@@ -85,29 +87,23 @@ export const Projects: CollectionConfig = {
         },
       ],
     },
-    {
-      name: 'url',
-      type: 'text',
-    },
-    {
-      name: 'gygUrl',
-      type: 'text',
-    },
-    {
-      name: 'mapsUrl',
-      type: 'text',
-    },
+    { name: 'url', type: 'text', label: 'URL Proyek' },
+    { name: 'gygUrl', type: 'text', label: 'URL Eksternal' },
+    { name: 'mapsUrl', type: 'text', label: 'URL Google Maps' },
     {
       name: 'verify',
       type: 'text',
+      label: 'Verifikasi',
     },
     {
       name: 'review',
       type: 'textarea',
+      label: 'Ulasan',
     },
     {
       name: 'getInvolved',
       type: 'textarea',
+      label: 'Cara Terlibat',
     },
   ],
 }
