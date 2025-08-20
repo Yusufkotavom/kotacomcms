@@ -1,0 +1,45 @@
+# Rakit PC Core i3 2120 4gb 500gb PC Rakitan Surabaya
+
+pCategory: kotacom
+pSlug: rakit-pc-core-i3-2120-4gb-500gb-pc-rakitan-surabaya
+pImageURL1: https://res.cloudinary.com/dxyjku3eh/image/upload/v1754963343/image-fallback/modern%20web%2Ccomputer%2Ccoding%2Cillutration%2Cgradient.%20with%20text%20kotacom.id%20-%20085799520350%20%282%29.jpg
+Status: Published
+pContent: Bingung cari rakit PC yang sesuai kebutuhan? Tidak tahu part-part yang cocok?
+Untuk gaming? Design? Atau hanya untuk office?
+Anda berada di lapak yang tepat!
+Kami melayani pc rakitan berdasarkan kategorisasi harga dan kebutuhan.
+Silahkan cek lapak kami untuk melihat spek lainya.
+
+Office Administrasi
+- Untuk keperluan Office, Administrasi dan Design
+- ready stock banyak
+- bisa untuk kepentingan Admin, Sekolah, Kursus, Marketing, dan lainnya
+
+Inside Package :
+- PC Core Processor intel core i3 2120
+- All in One System Installation (Siap Pakai)
+
+Motherboard BARU H55 Qwerty
+Ram Baru DDR3 Hynix/Kingstone 4gb
+Casing Baru Alcatroz Azzura
+Processor intel core i3 2120 tray + fan ori socket 1155
+Hardisk 500gb Garansi 1th
+
+Bonus :
+- Windows - Activated Lifetime
+- Office 2016 Professional - Activated Lifetime
+- Garansi Kantor sesuai Garansi Sparepart. Dibantu 1 Tahun Full jika terjadi kendala.
+
+Catatan :
+- Selalu gunakan Asuransi.
+- Area Surabaya silakan menggunakan Gosend / Grab
+- Pengiriman Luar Kota, ongkir sudah termasuk packing kayu
+- Feel Free to Contact us
+
+KOTATECHNO GROUP INDONUSA
+- Personal Line and Whatsapp : kosong8123 - dua 10 - 9396
+
+Sales and Customer Service, Warranty Claim and Services Support
+Jl. Gayungan IV 23 Surabaya
+pPrice: 499000
+pPrice 1: 499000
