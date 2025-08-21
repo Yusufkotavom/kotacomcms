@@ -153,6 +153,9 @@ export interface User {
  */
 export interface Media {
   id: number;
+  /**
+   * Deskripsikan gambar untuk aksesibilitas dan SEO.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -172,27 +175,60 @@ export interface Media {
  */
 export interface Post {
   id: number;
+  /**
+   * Judul artikel yang tampil di daftar dan halaman detail.
+   */
   title?: string | null;
+  /**
+   * Bagian URL (huruf kecil, gunakan tanda hubung).
+   */
   slug?: string | null;
+  /**
+   * Status publikasi konten.
+   */
   status?: ('draft' | 'published') | null;
+  /**
+   * Tanggal saat artikel diterbitkan.
+   */
+  published?: string | null;
+  /**
+   * Tanggal update terakhir (opsional).
+   */
+  lastUpdated?: string | null;
+  /**
+   * URL gambar sampul. Gunakan URL lengkap (https://...).
+   */
+  coverImage?: string | null;
+  /**
+   * Ringkasan singkat untuk SEO dan pratinjau.
+   */
+  description?: string | null;
+  /**
+   * Tambahkan satu atau lebih kategori.
+   */
   category?:
     | {
         value?: string | null;
         id?: string | null;
       }[]
     | null;
-  description?: string | null;
-  published?: string | null;
-  lastUpdated?: string | null;
-  coverImage?: string | null;
+  /**
+   * Kata kunci terkait artikel. Tambahkan beberapa tag.
+   */
   tags?:
     | {
         value?: string | null;
         id?: string | null;
       }[]
     | null;
-  body?: string | null;
+  /**
+   * Pilih format penulisan konten.
+   */
   format?: ('md' | 'html') | null;
+  /**
+   * Isi konten utama. Gunakan Markdown jika format = md, atau HTML jika format = html.
+   */
+  body?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -249,9 +285,51 @@ export interface Project {
  */
 export interface Product {
   id: number;
+  /**
+   * Nama utama produk.
+   */
   title?: string | null;
+  /**
+   * Bagian URL (huruf kecil, tanda hubung).
+   */
   slug?: string | null;
+  /**
+   * Status publikasi produk.
+   */
   status?: ('draft' | 'published') | null;
+  /**
+   * Harga tampil (angka atau teks).
+   */
+  price?: string | null;
+  /**
+   * Harga sebelum diskon (opsional).
+   */
+  originalPrice?: string | null;
+  /**
+   * Penanda promosi untuk prioritas penampilan.
+   */
+  priority?: ('featured' | 'bestseller' | 'sale' | 'new') | null;
+  published?: string | null;
+  /**
+   * Centang jika produk adalah konten sponsor.
+   */
+  isSponsored?: boolean | null;
+  /**
+   * URL gambar utama produk.
+   */
+  imageUrl?: string | null;
+  imageUrl2?: string | null;
+  imageUrl3?: string | null;
+  description?: string | null;
+  /**
+   * Tambahkan fitur-fitur penting produk.
+   */
+  features?:
+    | {
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   category?:
     | {
         value?: string | null;
@@ -270,22 +348,14 @@ export interface Product {
         id?: string | null;
       }[]
     | null;
-  imageUrl?: string | null;
-  price?: string | null;
-  published?: string | null;
-  description?: string | null;
-  body?: string | null;
+  /**
+   * Gunakan Markdown (md) atau HTML.
+   */
   format?: ('md' | 'html') | null;
+  body?: string | null;
+  externalRating?: string | null;
+  soldCount?: string | null;
   verify?: string | null;
-  imageUrl2?: string | null;
-  imageUrl3?: string | null;
-  review?: string | null;
-  features?:
-    | {
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   name?: string | null;
   type?:
     | {
@@ -300,24 +370,26 @@ export interface Product {
   blibliUrl?: string | null;
   bukalapakUrl?: string | null;
   lazadaUrl?: string | null;
-  mapsUrl?: string | null;
   affiliateCode?: string | null;
   commissionRate?: string | null;
   affiliateProvider?: string | null;
   discountCode?: string | null;
   specialOffer?: string | null;
   ctaText?: string | null;
-  priority?: ('featured' | 'bestseller' | 'sale' | 'new') | null;
-  externalRating?: string | null;
-  soldCount?: string | null;
-  originalPrice?: string | null;
-  isSponsored?: boolean | null;
+  /**
+   * Siapa yang menjadi target produk ini.
+   */
   targetAudience?:
     | {
         value?: string | null;
         id?: string | null;
       }[]
     | null;
+  review?: string | null;
+  /**
+   * URL lokasi terkait produk (opsional).
+   */
+  mapsUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -506,24 +578,24 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   status?: T;
+  published?: T;
+  lastUpdated?: T;
+  coverImage?: T;
+  description?: T;
   category?:
     | T
     | {
         value?: T;
         id?: T;
       };
-  description?: T;
-  published?: T;
-  lastUpdated?: T;
-  coverImage?: T;
   tags?:
     | T
     | {
         value?: T;
         id?: T;
       };
-  body?: T;
   format?: T;
+  body?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -581,6 +653,21 @@ export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   status?: T;
+  price?: T;
+  originalPrice?: T;
+  priority?: T;
+  published?: T;
+  isSponsored?: T;
+  imageUrl?: T;
+  imageUrl2?: T;
+  imageUrl3?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
   category?:
     | T
     | {
@@ -599,22 +686,11 @@ export interface ProductsSelect<T extends boolean = true> {
         value?: T;
         id?: T;
       };
-  imageUrl?: T;
-  price?: T;
-  published?: T;
-  description?: T;
-  body?: T;
   format?: T;
+  body?: T;
+  externalRating?: T;
+  soldCount?: T;
   verify?: T;
-  imageUrl2?: T;
-  imageUrl3?: T;
-  review?: T;
-  features?:
-    | T
-    | {
-        value?: T;
-        id?: T;
-      };
   name?: T;
   type?:
     | T
@@ -629,24 +705,20 @@ export interface ProductsSelect<T extends boolean = true> {
   blibliUrl?: T;
   bukalapakUrl?: T;
   lazadaUrl?: T;
-  mapsUrl?: T;
   affiliateCode?: T;
   commissionRate?: T;
   affiliateProvider?: T;
   discountCode?: T;
   specialOffer?: T;
   ctaText?: T;
-  priority?: T;
-  externalRating?: T;
-  soldCount?: T;
-  originalPrice?: T;
-  isSponsored?: T;
   targetAudience?:
     | T
     | {
         value?: T;
         id?: T;
       };
+  review?: T;
+  mapsUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

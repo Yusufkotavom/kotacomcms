@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
+  labels: {
+    singular: 'Artikel',
+    plural: 'Artikel',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'status', 'published'],
@@ -37,13 +41,30 @@ export const Posts: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-    },
-    {
-      name: 'slug',
-      type: 'text',
-      unique: true,
+      type: 'row',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Judul',
+          admin: {
+            width: '60%',
+            placeholder: 'Contoh: Panduan Memilih Laptop untuk Kerja',
+            description: 'Judul artikel yang tampil di daftar dan halaman detail.'
+          },
+        },
+        {
+          name: 'slug',
+          type: 'text',
+          unique: true,
+          label: 'Slug URL',
+          admin: {
+            width: '40%',
+            placeholder: 'contoh-panduan-memilih-laptop',
+            description: 'Bagian URL (huruf kecil, gunakan tanda hubung).'
+          },
+        },
+      ],
     },
     {
       name: 'status',
@@ -52,57 +73,114 @@ export const Posts: CollectionConfig = {
         { label: 'Draft', value: 'draft' },
         { label: 'Published', value: 'published' },
       ],
-      defaultValue: 'draft', // Keep existing default to match current data
+      defaultValue: 'draft',
+      label: 'Status',
       admin: {
         position: 'sidebar',
+        description: 'Status publikasi konten.'
       },
     },
     {
-      name: 'category',
-      type: 'array',
+      type: 'row',
       fields: [
         {
-          name: 'value',
-          type: 'text',
+          name: 'published',
+          type: 'date',
+          label: 'Tanggal Terbit',
+          admin: {
+            width: '50%',
+            description: 'Tanggal saat artikel diterbitkan.'
+          },
+        },
+        {
+          name: 'lastUpdated',
+          type: 'date',
+          label: 'Terakhir Diperbarui',
+          admin: {
+            width: '50%',
+            description: 'Tanggal update terakhir (opsional).'
+          },
         },
       ],
+    },
+    {
+      name: 'coverImage',
+      type: 'text',
+      label: 'Gambar Sampul (URL)',
+      admin: {
+        placeholder: 'https://cdn.kotacom.id/images/contoh.jpg',
+        description: 'URL gambar sampul. Gunakan URL lengkap (https://...).'
+      },
     },
     {
       name: 'description',
       type: 'textarea',
+      label: 'Ringkasan',
+      admin: {
+        placeholder: 'Tuliskan deskripsi singkat artikel...',
+        description: 'Ringkasan singkat untuk SEO dan pratinjau.'
+      },
     },
     {
-      name: 'published',
-      type: 'date',
-    },
-    {
-      name: 'lastUpdated',
-      type: 'date',
-    },
-    {
-      name: 'coverImage',
-      type: 'text', // URL for simplicity
-    },
-    {
-      name: 'tags',
-      type: 'array',
+      type: 'row',
       fields: [
         {
-          name: 'value',
-          type: 'text',
+          name: 'category',
+          type: 'array',
+          label: 'Kategori',
+          admin: {
+            width: '50%',
+            description: 'Tambahkan satu atau lebih kategori.'
+          },
+          fields: [
+            {
+              name: 'value',
+              type: 'text',
+              admin: {
+                placeholder: 'Contoh: Teknologi'
+              },
+            },
+          ],
+        },
+        {
+          name: 'tags',
+          type: 'array',
+          label: 'Tag',
+          admin: {
+            width: '50%',
+            description: 'Kata kunci terkait artikel. Tambahkan beberapa tag.'
+          },
+          fields: [
+            {
+              name: 'value',
+              type: 'text',
+              admin: {
+                placeholder: 'Contoh: laptop, produktivitas'
+              },
+            },
+          ],
         },
       ],
-    },
-    {
-      name: 'body',
-      type: 'textarea', // can contain md or html
-      maxLength: 100000, // Increased to support long posts
     },
     {
       name: 'format',
       type: 'select',
       options: ['md', 'html'],
       defaultValue: 'md',
+      label: 'Format Konten',
+      admin: {
+        description: 'Pilih format penulisan konten.'
+      },
+    },
+    {
+      name: 'body',
+      type: 'textarea',
+      maxLength: 100000,
+      label: 'Konten',
+      admin: {
+        placeholder: 'Tulis konten artikel di sini...',
+        description: 'Isi konten utama. Gunakan Markdown jika format = md, atau HTML jika format = html.'
+      },
     },
   ],
 }

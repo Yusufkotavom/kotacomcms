@@ -1,5 +1,9 @@
 :root {
   --font-mono: 'Roboto Mono', monospace;
+  --brand-bg: #0b1020; /* dark navy */
+  --brand-fg: #f7fafc; /* near white */
+  --brand-accent: #27c3a8; /* teal */
+  --brand-accent-ink: #0a0f1a; /* dark ink */
 }
 
 * {
@@ -10,7 +14,7 @@ html {
   font-size: 18px;
   line-height: 32px;
 
-  background: rgb(0, 0, 0);
+  background: var(--brand-bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -26,7 +30,7 @@ body {
   line-height: 32px;
 
   margin: 0;
-  color: rgb(1000, 1000, 1000);
+  color: var(--brand-fg);
 
   @media (max-width: 1024px) {
     font-size: 15px;
@@ -128,15 +132,15 @@ svg {
     }
 
     .admin {
-      color: rgb(0, 0, 0);
-      background: rgb(1000, 1000, 1000);
-      border: 1px solid rgb(0, 0, 0);
+      color: var(--brand-accent-ink);
+      background: var(--brand-accent);
+      border: 1px solid var(--brand-accent);
     }
 
     .docs {
-      color: rgb(1000, 1000, 1000);
-      background: rgb(0, 0, 0);
-      border: 1px solid rgb(1000, 1000, 1000);
+      color: var(--brand-fg);
+      background: transparent;
+      border: 1px solid var(--brand-fg);
     }
   }
 
@@ -157,7 +161,8 @@ svg {
     .codeLink {
       text-decoration: none;
       padding: 0 0.5rem;
-      background: rgb(60, 60, 60);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 4px;
     }
   }

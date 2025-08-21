@@ -29,6 +29,19 @@ console.log('Database URI:', databaseUri.replace(/:[^:@]*@/, ':****@')) // Hide 
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: 'kotacom.id CMS',
+    },
+    components: {
+      afterNavLinks: [
+        {
+          path: './admin/SidebarGuide',
+        },
+        {
+          path: './admin/SidebarStats',
+        },
+      ],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
