@@ -37,6 +37,9 @@ export default buildConfig({
         {
           path: './admin/SidebarGuide',
         },
+        {
+          path: './admin/SidebarStats',
+        },
       ],
     },
     importMap: {
