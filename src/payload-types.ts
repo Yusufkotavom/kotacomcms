@@ -275,6 +275,10 @@ export interface Project {
   mapsUrl?: string | null;
   verify?: string | null;
   review?: string | null;
+  /**
+   * Status publikasi konten.
+   */
+  status?: ('draft' | 'published') | null;
   getInvolved?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -431,6 +435,10 @@ export interface Service {
   format?: ('md' | 'html') | null;
   imageUrl2?: string | null;
   imageUrl3?: string | null;
+  /**
+   * Status publikasi konten.
+   */
+  status?: ('draft' | 'published') | null;
   review?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -641,6 +649,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   mapsUrl?: T;
   verify?: T;
   review?: T;
+  status?: T;
   getInvolved?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -759,6 +768,7 @@ export interface ServicesSelect<T extends boolean = true> {
   format?: T;
   imageUrl2?: T;
   imageUrl3?: T;
+  status?: T;
   review?: T;
   updatedAt?: T;
   createdAt?: T;

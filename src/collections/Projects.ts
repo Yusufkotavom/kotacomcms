@@ -101,6 +101,20 @@ export const Projects: CollectionConfig = {
       label: 'Ulasan',
     },
     {
+      name: 'status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'draft',
+      label: 'Status',
+      admin: {
+        position: 'sidebar',
+        description: 'Status publikasi konten.'
+      },
+    },
+    {
       name: 'getInvolved',
       type: 'textarea',
       label: 'Cara Terlibat',

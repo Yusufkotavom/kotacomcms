@@ -111,6 +111,20 @@ export const Services: CollectionConfig = {
       label: 'Gambar 3 (URL)'
     },
     {
+      name: 'status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'draft',
+      label: 'Status',
+      admin: {
+        position: 'sidebar',
+        description: 'Status publikasi konten.'
+      },
+    },
+    {
       name: 'review',
       type: 'textarea',
       label: 'Ulasan',

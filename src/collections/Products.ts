@@ -35,7 +35,7 @@ export const Products: CollectionConfig = {
           admin: {
             width: '60%',
             placeholder: 'Contoh: Laptop Kotacom Pro 14',
-            description: 'Nama utama produk.'
+            description: 'Nama utama produk.',
           },
         },
         {
@@ -46,7 +46,7 @@ export const Products: CollectionConfig = {
           admin: {
             width: '40%',
             placeholder: 'laptop-kotacom-pro-14',
-            description: 'Bagian URL (huruf kecil, tanda hubung).'
+            description: 'Bagian URL (huruf kecil, tanda hubung).',
           },
         },
       ],
@@ -62,7 +62,7 @@ export const Products: CollectionConfig = {
       label: 'Status',
       admin: {
         position: 'sidebar',
-        description: 'Status publikasi produk.'
+        description: 'Status publikasi produk.',
       },
     },
     {
@@ -75,7 +75,7 @@ export const Products: CollectionConfig = {
           admin: {
             width: '33%',
             placeholder: 'Contoh: 7.499.000',
-            description: 'Harga tampil (angka atau teks).'
+            description: 'Harga tampil (angka atau teks).',
           },
         },
         {
@@ -85,7 +85,7 @@ export const Products: CollectionConfig = {
           admin: {
             width: '33%',
             placeholder: 'Contoh: 8.299.000',
-            description: 'Harga sebelum diskon (opsional).'
+            description: 'Harga sebelum diskon (opsional).',
           },
         },
         {
@@ -95,7 +95,7 @@ export const Products: CollectionConfig = {
           label: 'Prioritas',
           admin: {
             width: '34%',
-            description: 'Penanda promosi untuk prioritas penampilan.'
+            description: 'Penanda promosi untuk prioritas penampilan.',
           },
         },
       ],
@@ -118,7 +118,7 @@ export const Products: CollectionConfig = {
           label: 'Disponsori',
           admin: {
             width: '50%',
-            description: 'Centang jika produk adalah konten sponsor.'
+            description: 'Centang jika produk adalah konten sponsor.',
           },
         },
       ],
@@ -129,7 +129,7 @@ export const Products: CollectionConfig = {
       label: 'Gambar Utama (URL)',
       admin: {
         placeholder: 'https://cdn.kotacom.id/images/produk.jpg',
-        description: 'URL gambar utama produk.'
+        description: 'URL gambar utama produk.',
       },
     },
     {
@@ -152,7 +152,7 @@ export const Products: CollectionConfig = {
       type: 'array',
       label: 'Fitur Utama',
       admin: {
-        description: 'Tambahkan fitur-fitur penting produk.'
+        description: 'Tambahkan fitur-fitur penting produk.',
       },
       fields: [
         {
@@ -170,21 +170,21 @@ export const Products: CollectionConfig = {
           type: 'array',
           label: 'Kategori',
           admin: { width: '33%' },
-          fields: [ { name: 'value', type: 'text', admin: { placeholder: 'Contoh: Laptop' } } ],
+          fields: [{ name: 'value', type: 'text', admin: { placeholder: 'Contoh: Laptop' } }],
         },
         {
           name: 'country',
           type: 'array',
           label: 'Negara',
           admin: { width: '33%' },
-          fields: [ { name: 'value', type: 'text', admin: { placeholder: 'Contoh: Indonesia' } } ],
+          fields: [{ name: 'value', type: 'text', admin: { placeholder: 'Contoh: Indonesia' } }],
         },
         {
           name: 'locale',
           type: 'array',
           label: 'Locale',
           admin: { width: '34%' },
-          fields: [ { name: 'value', type: 'text', admin: { placeholder: 'Contoh: id-ID' } } ],
+          fields: [{ name: 'value', type: 'text', admin: { placeholder: 'Contoh: id-ID' } }],
         },
       ],
     },
@@ -206,7 +206,12 @@ export const Products: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'externalRating', type: 'text', label: 'Rating Eksternal', admin: { width: '33%' } },
+        {
+          name: 'externalRating',
+          type: 'text',
+          label: 'Rating Eksternal',
+          admin: { width: '33%' },
+        },
         { name: 'soldCount', type: 'text', label: 'Jumlah Terjual', admin: { width: '33%' } },
         { name: 'verify', type: 'text', label: 'Verifikasi', admin: { width: '34%' } },
       ],
@@ -215,7 +220,13 @@ export const Products: CollectionConfig = {
       type: 'row',
       fields: [
         { name: 'name', type: 'text', label: 'Nama Internal', admin: { width: '33%' } },
-        { name: 'type', type: 'array', label: 'Tipe', admin: { width: '67%' }, fields: [ { name: 'value', type: 'text' } ] },
+        {
+          name: 'type',
+          type: 'array',
+          label: 'Tipe',
+          admin: { width: '67%' },
+          fields: [{ name: 'value', type: 'text' }],
+        },
       ],
     },
     {
@@ -265,12 +276,18 @@ export const Products: CollectionConfig = {
         { name: 'value', type: 'text', admin: { placeholder: 'Contoh: Pelajar, Profesional' } },
       ],
     },
+
     {
       name: 'review',
       type: 'textarea',
       label: 'Ulasan',
       admin: { placeholder: 'Catatan ulasan produk...' },
     },
-    { name: 'mapsUrl', type: 'text', label: 'URL Google Maps', admin: { description: 'URL lokasi terkait produk (opsional).' } },
+    {
+      name: 'mapsUrl',
+      type: 'text',
+      label: 'URL Google Maps',
+      admin: { description: 'URL lokasi terkait produk (opsional).' },
+    },
   ],
 }
