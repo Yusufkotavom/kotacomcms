@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
 import './styles.css'
+import LoginForm from '@/components/LoginForm'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -28,7 +29,12 @@ export default async function HomePage() {
             width={65}
           />
         </picture>
-        {!user && <h1>Welcome to Frontline.</h1>}
+        {!user && (
+          <div className="flex w-full flex-col items-center gap-6">
+            <h1>Welcome to Kotacom.</h1>
+            <LoginForm />
+          </div>
+        )}
         {user && <h1>Welcome back, {user.email}</h1>}
         <div className="links">
           <a
