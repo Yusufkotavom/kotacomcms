@@ -19,11 +19,12 @@ export default async function HomePage() {
     <div className="home">
       <div className="content">
         <picture>
-          <source srcSet="/frontline-logo.svg" />
+          <source srcSet="https://www.kotacom.id/assets/images/kotacom-logo-Cxnk7d9Z_1nOG2e.svg" />
           <Image
-            alt="Frontline Logo"
+            alt="Kotacom Logo"
             height={65}
-            src="/frontline-logo.svg"
+            src="https://www.kotacom.id/assets/images/kotacom-logo-Cxnk7d9Z_1nOG2e.svg"
+            unoptimized
             width={65}
           />
         </picture>
