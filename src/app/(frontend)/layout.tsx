@@ -2,8 +2,8 @@ import React from 'react'
 import './styles.css'
 
 export const metadata = {
-  description: 'Frontline — public site.',
-  title: 'Frontline',
+  description: 'Kotacom — public site.',
+  title: 'Kotacom',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
