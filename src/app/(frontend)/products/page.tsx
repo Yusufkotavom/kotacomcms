@@ -1,115 +1,67 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
-import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Products List Component
-async function ProductsList() {
-  const payload = await getPayloadClient()
-  
-  try {
-    const products = await payload.find({
-      collection: 'products',
-      where: {
-        status: { equals: 'published' }
-      },
-      sort: '-published'
-    })
-
-    if (products.docs.length === 0) {
-      return (
-        <div className="text-center" style={{ padding: '4rem 0' }}>
-          <h3>Belum ada produk tersedia</h3>
-          <p>Kami sedang mempersiapkan produk teknologi terbaik untuk Anda.</p>
-        </div>
-      )
-    }
-
-    return (
-      <div className="grid grid-4">
-        {products.docs.map((product: any) => (
-          <div key={product.id} className="card fade-in">
-            {product.imageUrl && (
-              <img 
-                src={product.imageUrl} 
-                alt={product.title}
-                className="card-image"
-              />
-            )}
-            <div className="card-content">
-              <h3 className="card-title">{product.title}</h3>
-              {product.category && product.category.length > 0 && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  {product.category.map((cat: any, index: number) => (
-                    <span 
-                      key={index}
-                      style={{
-                        background: 'var(--color-gray-200)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-sm)',
-                        fontSize: 'var(--font-size-sm)',
-                        marginRight: '0.5rem'
-                      }}
-                    >
-                      {cat.value}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p className="card-description">
-                {product.description ? product.description.substring(0, 120) + '...' : 'Produk teknologi berkualitas tinggi yang dapat meningkatkan efisiensi bisnis Anda.'}
-              </p>
-              <div style={{ marginBottom: '1rem' }}>
-                {product.price && (
-                  <p style={{ fontWeight: '600', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
-                    Rp {product.price}
-                  </p>
-                )}
-                {product.originalPrice && product.originalPrice !== product.price && (
-                  <p style={{ 
-                    textDecoration: 'line-through', 
-                    color: 'var(--color-gray-500)', 
-                    fontSize: 'var(--font-size-sm)' 
-                  }}>
-                    Rp {product.originalPrice}
-                  </p>
-                )}
-              </div>
-              {product.priority && (
-                <div style={{ marginBottom: '1rem' }}>
-                  <span 
-                    style={{
-                      background: product.priority === 'featured' ? 'var(--color-primary)' : 
-                                product.priority === 'bestseller' ? '#f59e0b' : 
-                                product.priority === 'sale' ? '#ef4444' : '#10b981',
-                      color: 'white',
-                      padding: '0.25rem 0.5rem',
-                      borderRadius: 'var(--radius-sm)',
-                      fontSize: 'var(--font-size-sm)',
-                      fontWeight: '500'
-                    }}
-                  >
-                    {product.priority === 'featured' ? 'Unggulan' : 
-                     product.priority === 'bestseller' ? 'Terlaris' : 
-                     product.priority === 'sale' ? 'Diskon' : 'Baru'}
-                  </span>
-                </div>
-              )}
-              <Link href={`/products/${product.slug}`} className="btn btn-primary">
-                Lihat Detail
-              </Link>
+function ProductsList() {
+  return (
+    <div className="grid grid-4">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        <div key={i} className="card fade-in">
+          <div className="card-content">
+            <h3 className="card-title">Produk Teknologi {i}</h3>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Hardware
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Premium
+              </span>
             </div>
+            <p className="card-description">
+              Produk teknologi berkualitas tinggi yang dapat meningkatkan efisiensi bisnis Anda.
+            </p>
+            <div style={{ marginBottom: '1rem' }}>
+              <p style={{ fontWeight: '600', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
+                Rp 1.000.000
+              </p>
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <span 
+                style={{
+                  background: i === 1 ? 'var(--color-primary)' : '#10b981',
+                  color: 'white',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: '500'
+                }}
+              >
+                {i === 1 ? 'Unggulan' : 'Baru'}
+              </span>
+            </div>
+            <Link href="/products" className="btn btn-primary">
+              Lihat Detail
+            </Link>
           </div>
-        ))}
-      </div>
-    )
-  } catch (error) {
-    return (
-      <div className="text-center" style={{ padding: '4rem 0' }}>
-        <h3>Terjadi kesalahan</h3>
-        <p>Gagal memuat data produk. Silakan coba lagi nanti.</p>
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  )
 }
 
 // Products Page Component
@@ -152,13 +104,7 @@ export default function ProductsPage() {
       {/* Products List */}
       <section className="section">
         <div className="container">
-          <Suspense fallback={
-            <div className="text-center" style={{ padding: '4rem 0' }}>
-              <h3>Memuat produk...</h3>
-            </div>
-          }>
-            <ProductsList />
-          </Suspense>
+          <ProductsList />
         </div>
       </section>
 

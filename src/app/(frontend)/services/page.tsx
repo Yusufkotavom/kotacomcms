@@ -1,89 +1,54 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
-import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Services List Component
-async function ServicesList() {
-  const payload = await getPayloadClient()
-  
-  try {
-    const services = await payload.find({
-      collection: 'services',
-      where: {
-        status: { equals: 'published' }
-      },
-      sort: '-published'
-    })
-
-    if (services.docs.length === 0) {
-      return (
-        <div className="text-center" style={{ padding: '4rem 0' }}>
-          <h3>Belum ada layanan tersedia</h3>
-          <p>Kami sedang mempersiapkan layanan terbaik untuk Anda.</p>
-        </div>
-      )
-    }
-
-    return (
-      <div className="grid grid-3">
-        {services.docs.map((service: any) => (
-          <div key={service.id} className="card fade-in">
-            {service.imageUrl1 && (
-              <img 
-                src={service.imageUrl1} 
-                alt={service.title}
-                className="card-image"
-              />
-            )}
-            <div className="card-content">
-              <h3 className="card-title">{service.title}</h3>
-              {service.category && service.category.length > 0 && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  {service.category.map((cat: any, index: number) => (
-                    <span 
-                      key={index}
-                      style={{
-                        background: 'var(--color-gray-200)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-sm)',
-                        fontSize: 'var(--font-size-sm)',
-                        marginRight: '0.5rem'
-                      }}
-                    >
-                      {cat.value}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p className="card-description">
-                {service.body ? service.body.substring(0, 150) + '...' : 'Layanan profesional dengan kualitas terbaik untuk memenuhi kebutuhan bisnis Anda.'}
-              </p>
-              {service.price && (
-                <p style={{ fontWeight: '600', color: 'var(--color-primary)', marginBottom: '1rem' }}>
-                  Harga: {service.price}
-                </p>
-              )}
-              {service.wilayah && service.wilayah.length > 0 && (
-                <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
-                  <strong>Wilayah:</strong> {service.wilayah.map((w: any) => w.value).join(', ')}
-                </p>
-              )}
-              <Link href={`/services/${service.slug}`} className="btn btn-primary">
-                Lihat Detail
-              </Link>
+function ServicesList() {
+  return (
+    <div className="grid grid-3">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="card fade-in">
+          <div className="card-content">
+            <h3 className="card-title">Layanan Teknologi {i}</h3>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Teknologi
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Digital
+              </span>
             </div>
+            <p className="card-description">
+              Layanan profesional dengan kualitas terbaik untuk memenuhi kebutuhan bisnis Anda.
+            </p>
+            <p style={{ fontWeight: '600', color: 'var(--color-primary)', marginBottom: '1rem' }}>
+              Harga: Rp 1.000.000
+            </p>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
+              <strong>Wilayah:</strong> Jakarta, Bandung, Surabaya
+            </p>
+            <Link href="/services" className="btn btn-primary">
+              Lihat Detail
+            </Link>
           </div>
-        ))}
-      </div>
-    )
-  } catch (error) {
-    return (
-      <div className="text-center" style={{ padding: '4rem 0' }}>
-        <h3>Terjadi kesalahan</h3>
-        <p>Gagal memuat data layanan. Silakan coba lagi nanti.</p>
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  )
 }
 
 // Services Page Component
@@ -126,13 +91,7 @@ export default function ServicesPage() {
       {/* Services List */}
       <section className="section">
         <div className="container">
-          <Suspense fallback={
-            <div className="text-center" style={{ padding: '4rem 0' }}>
-              <h3>Memuat layanan...</h3>
-            </div>
-          }>
-            <ServicesList />
-          </Suspense>
+          <ServicesList />
         </div>
       </section>
 

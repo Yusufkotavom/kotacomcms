@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPayloadClient } from '../../../../payload/payloadClient'
+import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Project Detail Page Component
 export default async function ProjectDetailPage({ params }: { params: { slug: string } }) {

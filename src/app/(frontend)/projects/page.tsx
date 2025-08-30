@@ -1,89 +1,54 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
-import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Projects List Component
-async function ProjectsList() {
-  const payload = await getPayloadClient()
-  
-  try {
-    const projects = await payload.find({
-      collection: 'projects',
-      where: {
-        status: { equals: 'published' }
-      },
-      sort: '-published'
-    })
-
-    if (projects.docs.length === 0) {
-      return (
-        <div className="text-center" style={{ padding: '4rem 0' }}>
-          <h3>Belum ada proyek tersedia</h3>
-          <p>Kami sedang mempersiapkan portfolio proyek terbaik untuk Anda.</p>
-        </div>
-      )
-    }
-
-    return (
-      <div className="grid grid-3">
-        {projects.docs.map((project: any) => (
-          <div key={project.id} className="card fade-in">
-            {project.imageUrl && (
-              <img 
-                src={project.imageUrl} 
-                alt={project.title}
-                className="card-image"
-              />
-            )}
-            <div className="card-content">
-              <h3 className="card-title">{project.title}</h3>
-              {project.category && project.category.length > 0 && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  {project.category.map((cat: any, index: number) => (
-                    <span 
-                      key={index}
-                      style={{
-                        background: 'var(--color-gray-200)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-sm)',
-                        fontSize: 'var(--font-size-sm)',
-                        marginRight: '0.5rem'
-                      }}
-                    >
-                      {cat.value}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p className="card-description">
-                {project.description ? project.description.substring(0, 150) + '...' : 'Proyek teknologi yang inovatif dan berkualitas tinggi untuk berbagai industri.'}
-              </p>
-              {project.organiser && (
-                <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
-                  <strong>Klien:</strong> {project.organiser}
-                </p>
-              )}
-              {project.country && project.country.length > 0 && (
-                <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
-                  <strong>Lokasi:</strong> {project.country.map((c: any) => c.value).join(', ')}
-                </p>
-              )}
-              <Link href={`/projects/${project.slug}`} className="btn btn-primary">
-                Lihat Detail
-              </Link>
+function ProjectsList() {
+  return (
+    <div className="grid grid-3">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="card fade-in">
+          <div className="card-content">
+            <h3 className="card-title">Proyek Teknologi {i}</h3>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Infrastruktur
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Digital
+              </span>
             </div>
+            <p className="card-description">
+              Proyek teknologi yang inovatif dan berkualitas tinggi untuk berbagai industri.
+            </p>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
+              <strong>Klien:</strong> Perusahaan Teknologi {i}
+            </p>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginBottom: '1rem' }}>
+              <strong>Lokasi:</strong> Jakarta, Indonesia
+            </p>
+            <Link href="/projects" className="btn btn-primary">
+              Lihat Detail
+            </Link>
           </div>
-        ))}
-      </div>
-    )
-  } catch (error) {
-    return (
-      <div className="text-center" style={{ padding: '4rem 0' }}>
-        <h3>Terjadi kesalahan</h3>
-        <p>Gagal memuat data proyek. Silakan coba lagi nanti.</p>
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  )
 }
 
 // Projects Page Component
@@ -126,13 +91,7 @@ export default function ProjectsPage() {
       {/* Projects List */}
       <section className="section">
         <div className="container">
-          <Suspense fallback={
-            <div className="text-center" style={{ padding: '4rem 0' }}>
-              <h3>Memuat proyek...</h3>
-            </div>
-          }>
-            <ProjectsList />
-          </Suspense>
+          <ProjectsList />
         </div>
       </section>
 

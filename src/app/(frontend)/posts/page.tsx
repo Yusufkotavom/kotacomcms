@@ -1,112 +1,98 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
-import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Posts List Component
-async function PostsList() {
-  const payload = await getPayloadClient()
-  
-  try {
-    const posts = await payload.find({
-      collection: 'posts',
-      where: {
-        status: { equals: 'published' }
-      },
-      sort: '-published'
-    })
-
-    if (posts.docs.length === 0) {
-      return (
-        <div className="text-center" style={{ padding: '4rem 0' }}>
-          <h3>Belum ada artikel tersedia</h3>
-          <p>Kami sedang mempersiapkan konten artikel terbaik untuk Anda.</p>
-        </div>
-      )
-    }
-
-    return (
-      <div className="grid grid-3">
-        {posts.docs.map((post: any) => (
-          <div key={post.id} className="card fade-in">
-            {post.coverImage && (
-              <img 
-                src={post.coverImage} 
-                alt={post.title}
-                className="card-image"
-              />
-            )}
-            <div className="card-content">
-              <h3 className="card-title">{post.title}</h3>
-              {post.category && post.category.length > 0 && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  {post.category.map((cat: any, index: number) => (
-                    <span 
-                      key={index}
-                      style={{
-                        background: 'var(--color-gray-200)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-sm)',
-                        fontSize: 'var(--font-size-sm)',
-                        marginRight: '0.5rem'
-                      }}
-                    >
-                      {cat.value}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p className="card-description">
-                {post.description ? post.description.substring(0, 150) + '...' : 'Artikel informatif seputar teknologi dan bisnis yang dapat membantu Anda berkembang.'}
-              </p>
-              {post.published && (
-                <p style={{ 
-                  fontSize: 'var(--font-size-sm)', 
-                  color: 'var(--color-gray-500)', 
-                  marginBottom: '1rem',
-                  fontStyle: 'italic'
-                }}>
-                  Diterbitkan: {new Date(post.published).toLocaleDateString('id-ID', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-              )}
-              {post.tags && post.tags.length > 0 && (
-                <div style={{ marginBottom: '1rem' }}>
-                  {post.tags.slice(0, 3).map((tag: any, index: number) => (
-                    <span 
-                      key={index}
-                      style={{
-                        background: 'var(--color-gray-100)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-sm)',
-                        fontSize: 'var(--font-size-xs)',
-                        marginRight: '0.5rem',
-                        color: 'var(--color-gray-600)'
-                      }}
-                    >
-                      #{tag.value}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <Link href={`/posts/${post.slug}`} className="btn btn-primary">
-                Baca Artikel
-              </Link>
+function PostsList() {
+  return (
+    <div className="grid grid-3">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="card fade-in">
+          <div className="card-content">
+            <h3 className="card-title">Artikel Teknologi {i}</h3>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Teknologi
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-200)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-sm)',
+                  marginRight: '0.5rem'
+                }}
+              >
+                Bisnis
+              </span>
             </div>
+            <p className="card-description">
+              Artikel informatif seputar teknologi dan bisnis yang dapat membantu Anda berkembang.
+            </p>
+            <p style={{ 
+              fontSize: 'var(--font-size-sm)', 
+              color: 'var(--color-gray-500)', 
+              marginBottom: '1rem',
+              fontStyle: 'italic'
+            }}>
+              Diterbitkan: {new Date().toLocaleDateString('id-ID', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <div style={{ marginBottom: '1rem' }}>
+              <span 
+                style={{
+                  background: 'var(--color-gray-100)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-xs)',
+                  marginRight: '0.5rem',
+                  color: 'var(--color-gray-600)'
+                }}
+              >
+                #teknologi
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-100)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-xs)',
+                  marginRight: '0.5rem',
+                  color: 'var(--color-gray-600)'
+                }}
+              >
+                #bisnis
+              </span>
+              <span 
+                style={{
+                  background: 'var(--color-gray-100)',
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: 'var(--font-size-xs)',
+                  marginRight: '0.5rem',
+                  color: 'var(--color-gray-600)'
+                }}
+              >
+                #digital
+              </span>
+            </div>
+            <Link href="/posts" className="btn btn-primary">
+              Baca Artikel
+            </Link>
           </div>
-        ))}
-      </div>
-    )
-  } catch (error) {
-    return (
-      <div className="text-center" style={{ padding: '4rem 0' }}>
-        <h3>Terjadi kesalahan</h3>
-        <p>Gagal memuat data artikel. Silakan coba lagi nanti.</p>
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  )
 }
 
 // Posts Page Component
@@ -149,13 +135,7 @@ export default function PostsPage() {
       {/* Posts List */}
       <section className="section">
         <div className="container">
-          <Suspense fallback={
-            <div className="text-center" style={{ padding: '4rem 0' }}>
-              <h3>Memuat artikel...</h3>
-            </div>
-          }>
-            <PostsList />
-          </Suspense>
+          <PostsList />
         </div>
       </section>
 

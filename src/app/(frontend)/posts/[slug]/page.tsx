@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPayloadClient } from '../../../../payload/payloadClient'
+import { getPayloadClient } from '../../../payload/payloadClient'
 
 // Post Detail Page Component
 export default async function PostDetailPage({ params }: { params: { slug: string } }) {
