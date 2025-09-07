@@ -1,67 +1,264 @@
-# Payload Blank Template
+# WhatsApp Blast CRM
 
-This template comes configured with the bare minimum to get started on anything you need.
+A professional WhatsApp bulk messaging and customer relationship management system built with Next.js, TypeScript, and Prisma.
 
-## Quick start
+## Features
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+### 🔗 WhatsApp Integration
+- Connect to WhatsApp Web using QR code
+- Send individual and bulk messages
+- Real-time connection status monitoring
+- Session management
 
-## Quick Start - local setup
+### 👥 Contact Management (CRM)
+- Add, edit, and delete contacts
+- Organize contacts into groups
+- Tag contacts for better categorization
+- Search and filter contacts
+- Contact notes and additional information
 
-To spin up this template locally, follow these steps:
+### 📝 Template Management
+- Create message templates with variables
+- Dynamic content replacement ({{name}}, {{phone}}, {{email}})
+- Template library for reuse
+- Variable extraction from content
 
-### Clone
+### 🚀 Campaign Management
+- Create messaging campaigns
+- Schedule campaigns for later execution
+- Select recipients from contacts and groups
+- Campaign status tracking (draft, running, completed, paused, cancelled)
+- Real-time campaign progress monitoring
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+### 📊 Dashboard & Analytics
+- Overview statistics (total contacts, campaigns, messages)
+- Campaign performance metrics
+- Message delivery tracking
+- Visual dashboard with modern UI
 
-### Development
+## Tech Stack
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+- **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes, Prisma ORM
+- **Database**: SQLite (development), PostgreSQL (production ready)
+- **WhatsApp Integration**: whatsapp-web.js
+- **UI Components**: Radix UI, Lucide React icons
+- **Styling**: Tailwind CSS with custom components
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+## Getting Started
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+### Prerequisites
 
-#### Docker (Optional)
+- Node.js 18+ 
+- npm or yarn
+- WhatsApp mobile app (for QR code scanning)
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+### Installation
 
-To do so, follow these steps:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd wa-blast
+```
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+2. Install dependencies:
+```bash
+npm install
+```
 
-## How it works
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+4. Initialize the database:
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
 
-### Collections
+5. Start the development server:
+```bash
+npm run dev
+```
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- #### Users (Authentication)
+### Environment Variables
 
-  Users are auth-enabled collections that have access to the admin panel.
+Create a `.env.local` file with the following variables:
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+```env
+# Database
+DATABASE_URL="file:./dev.db"
 
-- #### Media
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key-here"
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+# WhatsApp Web
+WHATSAPP_SESSION_PATH="./sessions"
+WHATSAPP_QR_TIMEOUT=60000
 
-### Docker
+# App Configuration
+NODE_ENV="development"
+```
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+## Usage
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+### 1. Connect WhatsApp
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+1. Click "Connect WhatsApp" on the dashboard
+2. Scan the QR code with your WhatsApp mobile app
+3. Wait for the connection to be established
+4. You'll see "Connected to WhatsApp" status
 
-## Questions
+### 2. Manage Contacts
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+1. Go to the "Contacts" tab
+2. Click "Add Contact" to create new contacts
+3. Fill in contact details (name, phone, email, notes, tags)
+4. Organize contacts into groups for easier management
+
+### 3. Create Templates
+
+1. Go to the "Templates" tab
+2. Click "New Template" to create message templates
+3. Use variables like {{name}}, {{phone}}, {{email}} for dynamic content
+4. Save templates for reuse in campaigns
+
+### 4. Launch Campaigns
+
+1. Go to the "Campaigns" tab
+2. Click "New Campaign" to create a campaign
+3. Select a template and recipients (contacts/groups)
+4. Schedule the campaign or start immediately
+5. Monitor campaign progress in real-time
+
+## API Endpoints
+
+### WhatsApp
+- `GET /api/whatsapp/status` - Get connection status
+- `POST /api/whatsapp/connect` - Initiate connection
+- `POST /api/whatsapp/send` - Send individual message
+
+### Contacts
+- `GET /api/contacts` - List contacts with pagination
+- `POST /api/contacts` - Create new contact
+- `GET /api/contacts/[id]` - Get contact details
+- `PUT /api/contacts/[id]` - Update contact
+- `DELETE /api/contacts/[id]` - Delete contact
+
+### Groups
+- `GET /api/groups` - List groups
+- `POST /api/groups` - Create new group
+
+### Templates
+- `GET /api/templates` - List templates
+- `POST /api/templates` - Create new template
+
+### Campaigns
+- `GET /api/campaigns` - List campaigns
+- `POST /api/campaigns` - Create new campaign
+- `POST /api/campaigns/[id]/start` - Start campaign
+
+## Database Schema
+
+The application uses the following main entities:
+
+- **User**: User accounts and WhatsApp sessions
+- **Contact**: Contact information and metadata
+- **Group**: Contact groups for organization
+- **Template**: Message templates with variables
+- **Campaign**: Messaging campaigns
+- **BlastJob**: Individual message delivery jobs
+- **Message**: Message history and tracking
+
+## Development
+
+### Database Management
+
+```bash
+# Create a new migration
+npx prisma migrate dev --name migration_name
+
+# Reset database
+npx prisma migrate reset
+
+# View database in Prisma Studio
+npx prisma studio
+```
+
+### Code Structure
+
+```
+src/
+├── app/                 # Next.js app directory
+│   ├── api/            # API routes
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Home page
+├── components/         # React components
+│   ├── ui/            # Reusable UI components
+│   └── ...            # Feature components
+├── lib/               # Utility functions
+│   ├── prisma.ts      # Database client
+│   ├── whatsapp.ts    # WhatsApp service
+│   └── utils.ts       # Helper functions
+└── prisma/            # Database schema and migrations
+```
+
+## Deployment
+
+### Production Setup
+
+1. Set up a PostgreSQL database
+2. Update `DATABASE_URL` in environment variables
+3. Set `NODE_ENV=production`
+4. Deploy to your preferred platform (Vercel, Railway, etc.)
+
+### Environment Variables for Production
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/wa_blast"
+NEXTAUTH_URL="https://yourdomain.com"
+NEXTAUTH_SECRET="your-production-secret"
+NODE_ENV="production"
+```
+
+## Security Considerations
+
+- WhatsApp sessions are stored locally and encrypted
+- Rate limiting should be implemented for production use
+- Input validation and sanitization
+- Secure environment variable management
+- Regular security updates
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support and questions, please open an issue in the repository.
+
+## Roadmap
+
+- [ ] User authentication and authorization
+- [ ] Advanced analytics and reporting
+- [ ] Message scheduling and automation
+- [ ] Multi-language support
+- [ ] API rate limiting
+- [ ] Webhook integration
+- [ ] Mobile app
+- [ ] Advanced template editor
+- [ ] Contact import/export
+- [ ] Campaign A/B testing
