@@ -6,9 +6,6 @@
 .pnp.js
 .yarn/install-state.gz
 
-/.idea/*
-!/.idea/runConfigurations
-
 # testing
 /coverage
 
@@ -30,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -38,13 +36,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.env
+# database
+dev.db
+dev.db-journal
 
-/media
+# whatsapp sessions
+sessions/
+*.session
 
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# logs
+*.log
