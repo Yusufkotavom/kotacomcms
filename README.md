@@ -1,67 +1,208 @@
-# Payload Blank Template
+# Kotacom Agency - Modern Next.js Frontend
 
-This template comes configured with the bare minimum to get started on anything you need.
+A modern, responsive website for Kotacom Agency built with Next.js 15 and integrated with Payload CMS. Features a beautiful black and white gradient design with full integration of services, projects, products, and blog posts.
 
-## Quick start
+## 🚀 Features
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **Modern Design**: Clean black and white gradient aesthetic with professional typography
+- **Fully Responsive**: Mobile-first design that works on all devices
+- **CMS Integration**: Complete integration with Payload CMS collections
+- **Performance Optimized**: Built with Next.js 15 for optimal performance
+- **SEO Ready**: Proper meta tags and structured content
+- **Accessibility**: WCAG compliant design and navigation
 
-## Quick Start - local setup
+## 📱 Pages & Components
 
-To spin up this template locally, follow these steps:
+### Main Pages
+- **Homepage** (`/`) - Hero section, featured services, projects, products, and posts
+- **Services** (`/services`) - All agency services with filtering
+- **Projects** (`/projects`) - Portfolio of completed projects
+- **Products** (`/products`) - Technology products and recommendations
+- **Blog** (`/posts`) - Articles and insights
+- **About** (`/about`) - Company information and team
+- **Contact** (`/contact`) - Contact form and information
 
-### Clone
+### Detail Pages
+- **Service Detail** (`/services/[slug]`) - Individual service information
+- **Project Detail** (`/projects/[slug]`) - Project portfolio details
+- **Product Detail** (`/products/[slug]`) - Product specifications and purchase options
+- **Post Detail** (`/posts/[slug]`) - Full blog post content
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+## 🎨 Design System
 
-### Development
+### Colors
+- **Primary**: Black (#000000)
+- **Secondary**: White (#ffffff)
+- **Accent**: Light gray (#f5f5f5)
+- **Gradients**: Sophisticated black to white gradients
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+### Typography
+- **Font Family**: Inter (Google Fonts)
+- **Font Weights**: 300, 400, 500, 600, 700, 800, 900
+- **Responsive Sizing**: From xs (0.75rem) to 6xl (3.75rem)
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+### Components
+- **Buttons**: Primary, secondary, and outline variants
+- **Cards**: Hover effects and shadows
+- **Navigation**: Sticky navbar with smooth scrolling
+- **Grid System**: Responsive 2, 3, and 4 column layouts
+- **Animations**: Fade-in and slide-in effects
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+## 🛠️ Technology Stack
 
-#### Docker (Optional)
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: CSS with CSS Variables and utility classes
+- **CMS**: Payload CMS integration
+- **Database**: PostgreSQL (via Payload)
+- **Deployment**: Docker ready
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+## 📦 Installation & Setup
 
-To do so, follow these steps:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd kotacom
+   ```
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
 
-## How it works
+3. **Environment setup**
+   ```bash
+   cp env.example .env
+   # Fill in your environment variables
+   ```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+4. **Database setup**
+   ```bash
+   npm run db:test
+   npm run db:migrate
+   ```
 
-### Collections
+5. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+6. **Access the application**
+   - Frontend: http://localhost:3000
+   - Admin Panel: http://localhost:3000/admin
 
-- #### Users (Authentication)
+## 🔧 Development
 
-  Users are auth-enabled collections that have access to the admin panel.
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run test` - Run tests
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+### Project Structure
+```
+src/
+├── app/
+│   └── (frontend)/
+│       ├── page.tsx              # Homepage
+│       ├── services/             # Services pages
+│       ├── projects/             # Projects pages
+│       ├── products/             # Products pages
+│       ├── posts/                # Blog pages
+│       ├── about/                # About page
+│       ├── contact/              # Contact page
+│       ├── layout.tsx            # Root layout
+│       └── styles.css            # Global styles
+├── collections/                  # Payload CMS collections
+├── payload/                      # Payload configuration
+└── payload.config.ts             # Main Payload config
+```
 
-- #### Media
+## 📊 CMS Collections
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+### Services
+- Title, description, category, pricing
+- Service areas, provider information
+- Images and detailed content
+
+### Projects
+- Project details, client information
+- Categories, locations, costs
+- Project images and descriptions
+
+### Products
+- Product specifications, pricing
+- Features, categories, e-commerce links
+- Multiple images and affiliate information
+
+### Posts
+- Blog articles with categories and tags
+- Rich content support (Markdown/HTML)
+- Cover images and metadata
+
+## 🎯 Key Features
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints: 480px, 768px, 1024px
+- Flexible grid system
+
+### Performance
+- Next.js 15 optimizations
+- Image optimization
+- Lazy loading with Suspense
+
+### SEO
+- Meta tags for all pages
+- Open Graph support
+- Structured content
+
+### Accessibility
+- Semantic HTML
+- ARIA labels
+- Keyboard navigation
+- High contrast design
+
+## 🚀 Deployment
 
 ### Docker
+```bash
+docker-compose up -d
+```
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+### Manual Deployment
+1. Build the application: `npm run build`
+2. Start production server: `npm run start`
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+## 📝 Content Management
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+Use the Payload CMS admin panel to:
+- Create and manage services
+- Add portfolio projects
+- Upload product information
+- Write and publish blog posts
+- Manage media files
 
-## Questions
+## 🤝 Contributing
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 📞 Support
+
+For support and questions:
+- Email: info@kotacom.id
+- Phone: +62 21 1234 5678
+
+---
+
+**Kotacom Agency** - Transforming businesses through innovative digital solutions.
